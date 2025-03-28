@@ -1,6 +1,11 @@
 # panoramix README
 
-This is the README for your extension "panoramix". After writing up a brief description, we recommend including the following sections.
+- ` opam source why3.1.7.2 `
+- change src/ide/why3web.ml @ line 110 "\n" to "\r\n"
+- change src/ide/why3web.ml @ line 111 "\n" to "\r\n"
+- change src/ide/wserver.ml @ line 122 "HTTP/1.0" to "HTTP/1.1"
+- ` opam pin add why3.1.7.2 `
+- ` opam upgrade why3 `
 
 ## Features
 
