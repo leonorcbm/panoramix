@@ -179,6 +179,7 @@ export function activate(context: vscode.ExtensionContext) {
     ),
     /* tree provider */
     vscode.window.registerTreeDataProvider("proof-tree", nodeProvider),
+    vscode.commands.registerCommand('why3.getTask', commands.getTaskForNode),
   ];
 
   disposables.forEach((d) => {

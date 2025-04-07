@@ -17,7 +17,11 @@
       {
         "command": "why3.start",
         "title": "Start proofing session"
-      }
+      },
+      {
+				"command": "why3.getTask",
+				"title": "Get Task for selected node"
+			}
     ],
     "viewsContainers": {
       "activitybar": [

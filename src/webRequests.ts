@@ -47,7 +47,8 @@ export async function sendWebRequest(
   task?: number,
   command?: { id: number; command: commands },
 ) {
-  let uri = script.toString();
+  let uri = baseUrl + script.toString();
+
   if (request) {
     uri += "?" + request;
     if (request === requests.getTask && task) {
@@ -56,6 +57,7 @@ export async function sendWebRequest(
       uri += command.id + "," + command.command;
     }
   }
+
 
   let result = await createRequest(uri)
     .then((response) => {
