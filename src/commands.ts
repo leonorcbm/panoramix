@@ -20,7 +20,6 @@ export async function sessionStart(this: NodeProvider) {
   vscode.window.showInformationMessage(`Proofing session started`);
 }
 
-
 export async function getTaskForNode(id: number){
   let result = await webReq.sendWebRequest(webReq.scripts.request, webReq.requests.getTask, id); 
   if (!result.ok) {
@@ -44,7 +43,6 @@ export async function getTaskForNode(id: number){
   vscode.languages.setTextDocumentLanguage(doc, 'whyml');
   await vscode.window.showTextDocument(doc, { preserveFocus: true, preview: false, viewColumn: vscode.ViewColumn.Beside });
 }
-
 
 export async function startPollingNotifications() {
   if (pollInterval) {

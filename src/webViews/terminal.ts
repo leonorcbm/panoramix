@@ -17,7 +17,7 @@ import * as vscode from "vscode";
     }
 
     private getHtmlForWebview(webview: vscode.Webview): string {
-        return /* html */ `
+        return  `
             <!DOCTYPE html>
             <html lang="en">
             <head>

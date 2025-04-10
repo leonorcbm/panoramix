@@ -55,7 +55,8 @@
       "mypanel": [
         {
           "id": "panelView",
-          "name": "Why3"
+          "name": "Why3",
+          "icon": "./media/logo_why3.png"
         }
       ]
     },
