@@ -21,13 +21,24 @@
       {
 				"command": "why3.getTask",
 				"title": "Get Task for selected node"
-			}
+			},
+      {
+        "command": "why3.panel",
+        "title": "WebView Panel"
+      }
     ],
     "viewsContainers": {
       "activitybar": [
         {
           "id": "why3",
           "title": "Why3",
+          "icon": "./media/logo_why3.png"
+        }
+      ],
+      "panel": [
+        {
+          "id": "mypanel",
+          "title": "Panoramix",
           "icon": "./media/logo_why3.png"
         }
       ]
@@ -39,6 +50,12 @@
           "icon": "./media/logo_why3.png",
           "name": "panoramix",
           "when": "resourceLangId == 'whyml'"
+        }
+      ],
+      "mypanel": [
+        {
+          "id": "panelView",
+          "name": "Why3"
         }
       ]
     },

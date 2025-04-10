@@ -5,7 +5,7 @@ import * as commands from "./commands.ts";
 import { NodeProvider } from "./nodeProvider.ts";
 import { spawn } from "child_process";
 import TaskProvider from "./taskProvider";
-import { startPollingNotifications } from "./commands.ts";
+import { startPollingNotifications, registerNewPanel} from "./commands.ts";
 
 let serverProcess: ReturnType<typeof spawn> | null = null;
 let nodeProvider: NodeProvider | null = null;
@@ -78,6 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("why3.start", async () => {
       await ensureServerRunning(context);
       startPollingNotifications();
+      await registerNewPanel(context);
       //server.notificationsDaemon(this);
       vscode.window.showInformationMessage(`Proofing session started`);
     }),
@@ -89,6 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
     /* tree provider */
     vscode.window.registerTreeDataProvider("proof-tree", nodeProvider),
     vscode.commands.registerCommand('why3.getTask', commands.getTaskForNode),
+    vscode.window.createTerminal('why3.panel', )
   ];
 
   disposables.forEach((d) => {
