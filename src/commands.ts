@@ -5,9 +5,6 @@ import * as webReq  from './webRequests';
 import { Notification } from "./notificationsClient.ts";
 import TaskProvider from "./taskProvider";
 import { Tree } from "./tree.ts";
-import { PanoramixTerminalViewProvider } from './webViews/terminal.ts';
-import * as fs from "fs";
-import * as path from "path";
 
 let pollInterval: NodeJS.Timeout | null = null;
 let nodeProvider: NodeProvider | null = null;
@@ -136,13 +133,3 @@ export async function startPollingNotifications() {
     }
   }, 1000);
 }
-
-export async function registerNewPanel(context: vscode.ExtensionContext ) {
-  const panel = new PanoramixTerminalViewProvider(context.extensionUri);
-  const htmlPath = path.join(context.extensionPath, 'src', 'webViews' ,'view.html');
-  const htmlContent = fs.readFileSync(htmlPath, 'utf8');
-    
-  panel.resolveWebviewView.arguments;
-   
-  
-} 

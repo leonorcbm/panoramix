@@ -10,9 +10,7 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onView:panelView"
-  ],
+  "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -23,11 +21,7 @@
       {
 				"command": "why3.getTask",
 				"title": "Get Task for selected node"
-			},
-      {
-        "command": "why3.getPanel",
-        "title": "WebView Panel"
-      }
+			}
     ],
     "viewsContainers": {
       "activitybar": [
