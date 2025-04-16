@@ -10,7 +10,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onView:panelView"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -23,7 +25,7 @@
 				"title": "Get Task for selected node"
 			},
       {
-        "command": "why3.panel",
+        "command": "why3.getPanel",
         "title": "WebView Panel"
       }
     ],
@@ -54,6 +56,7 @@
       ],
       "mypanel": [
         {
+          "type": "webview",
           "id": "panelView",
           "name": "Why3",
           "icon": "./media/logo_why3.png"
