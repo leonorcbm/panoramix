@@ -1,25 +1,83 @@
 <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <style>
-                    body {
-                        background-color: #1e1e1e;
-                        color: #d4d4d4;
-                        font-family: monospace;
-                        padding: 1rem;
-                    }
-                    #terminal {
-                        white-space: pre-wrap;
-                    }
-                    .cmd::before {
-                        content: '$ ';
-                        color: #6A9955;
-                    }
-                </style>
-            </head>
-            <body>
-                <div id="terminal">
-                    <div class="cmd">Hello from Panoramix 🧙‍♂️</div>
-                </div>
-            </body>
-            </html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: monospace;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #menu {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #menu button {
+            background-color: #333;
+            color: #d4d4d4;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        #menu button:hover {
+            background-color: #444;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            gap: 1rem;
+        }
+
+        #terminal {
+            white-space: pre-wrap;
+            flex: 1;
+        }
+
+        .cmd::before {
+            content: '$ ';
+            color: #6A9955;
+        }
+
+        #side-panel {
+            width: 390px;
+            height: 300px;
+            background-color: #2a2a2a;
+            border-left: 2px solid #444;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div id="menu">
+            <button>Messages</button>
+            <button>Log</button>
+            <button>Edited Proof</button>
+            <button>Prover output</button>
+            <button>Counterexample</button>
+        </div>
+        <div class="content">
+            <div id="terminal">
+                <div class="cmd">Hello from Panoramix 🧙‍♂️</div>
+            </div>
+            <div id="side-panel">
+                <div><strong>Side Panel</strong></div>
+                <p>Tree menu</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
