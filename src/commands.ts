@@ -5,6 +5,7 @@ import * as webReq  from './webRequests';
 import { Notification } from "./notificationsClient.ts";
 import TaskProvider from "./taskProvider";
 import { Tree } from "./tree.ts";
+import { commands } from "./webRequests.ts";
 
 let pollInterval: NodeJS.Timeout | null = null;
 let nodeProvider: NodeProvider | null = null;
@@ -26,7 +27,7 @@ export async function getTaskForNode(id: number){
   }
   const response =  (await result.json()) as Notification.RootObject[];
   if(response.length === 0){
-      //vscode.window.showWarningMessage("Unable to get task from server");
+      vscode.window.showWarningMessage("Unable to get task from server");
       return;
   }
   let task;
@@ -132,4 +133,39 @@ export async function startPollingNotifications() {
       console.error("Error fetching notifications:", error);
     }
   }, 1000);
+}
+
+export async function getTaskForCommand(command: commands) {  /*FIXME: do something here xD */
+  const result = await webReq.sendWebRequest(webReq.scripts.request, webReq.requests["command"]);
+
+  if (!result.ok) {
+    throw new Error(`HTTP error! status: ${result.status}`);
+  }
+
+  switch (command) {
+    case commands.interrupt:
+      console.log("Interrupt");
+      break;
+    case commands.listTransforms:
+      console.log("Transforms");
+      break;
+    case commands.listProvers:
+      console.log("Provers");
+      break;
+    case commands.listStrategies:
+      console.log("File Strategies");
+      break;
+    case commands.print:
+      console.log("Print");
+      break;
+    case commands.search:
+      console.log("Search");
+      break;
+    case commands.searchAll:
+      console.log("Search All");
+      break;
+    default:
+      vscode.window.showWarningMessage(`Unknown command: ${command}`);
+      return;
+  }
 }
