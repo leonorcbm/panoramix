@@ -45,7 +45,8 @@ export async function sendWebRequest(
   script: scripts,
   request?: requests,
   task?: number,
-  command?: { id: number; command: commands },
+  //command?: { id: number; command: commands },
+  command?: { id: number; command: commands }
 ) {
   let uri = baseUrl + script.toString();
 

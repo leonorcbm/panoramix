@@ -33,7 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
     /* tree provider */
     vscode.window.registerTreeDataProvider("proof-tree", nodeProvider), 
     vscode.commands.registerCommand('why3.getTask', commands.getTaskForNode),
-  ];
+    vscode.commands.registerCommand('why3.quit', commands.sessionQuit),
+    vscode.commands.registerCommand('why3.transform', commands.getTransforms)
+  ]; 
   
 
   disposables.forEach((d) => {

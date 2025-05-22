@@ -9,8 +9,11 @@ import { commands } from "./webRequests.ts";
 
 let pollInterval: NodeJS.Timeout | null = null;
 let nodeProvider: NodeProvider | null = null;
+let sessionRunning: boolean;
+
 
 export async function sessionStart(this: NodeProvider) {
+  sessionRunning = true;
   server.start();
   await (async () =>
     new Promise((resolve) => {
@@ -135,6 +138,7 @@ export async function startPollingNotifications() {
   }, 1000);
 }
 
+
 export async function getTaskForCommand(command: commands) {  /*FIXME: do something here xD */
   const result = await webReq.sendWebRequest(webReq.scripts.request, webReq.requests["command"]);
 
@@ -169,3 +173,36 @@ export async function getTaskForCommand(command: commands) {  /*FIXME: do someth
       return;
   }
 }
+
+export function sessionQuit() {
+  /*if (!sessionRunning) {
+    vscode.window.showWarningMessage('No active session to stop');
+    return;
+  }*/
+
+  sessionRunning = false;
+   vscode.window.showWarningMessage('Chegeuei aqui');
+
+  Tree.reset();
+  nodeProvider?.refresh();
+  if (pollInterval) {
+    clearInterval(pollInterval);
+    pollInterval = null;
+  }
+
+  vscode.window.showInformationMessage('Proofing session stopped');
+}
+
+export async function getTransforms() {
+  let cmd = { id: 0, command: webReq.commands.listTransforms };
+  const result = await webReq.sendWebRequest(
+    webReq.scripts.request,
+    webReq.requests.command,
+    undefined, // skip task
+    cmd
+  );
+  return result;
+}
+
+
+

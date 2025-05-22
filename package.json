@@ -21,7 +21,15 @@
       {
 				"command": "why3.getTask",
 				"title": "Get Task for selected node"
-			}
+			},
+      {
+        "command": "why3.quit",
+        "title": "Quit proofing session"
+      },
+      {
+        "command": "why3.transform",
+        "title": "List transformations"
+      }
     ],
     "viewsContainers": {
       "activitybar": [

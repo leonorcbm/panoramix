@@ -27,4 +27,7 @@ export class Tree {
   static setNode(node: Node) {
     this.singleton.nodes[node.id] = node;
   }
+  static reset(){
+    this.singleton.nodes = [];
+  }
 }
