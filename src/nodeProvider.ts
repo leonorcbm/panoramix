@@ -134,10 +134,6 @@ export class NodeProvider implements vscode.TreeDataProvider<Node> {
       id: String(node.id),
       label: node.name,
       iconPath: this.getIconForNode(node).dark,
-      /*{                 
-                light: path.join(__filename,'..','..', 'media', 'fatcow', node.proved ? 'accept.png' : 'help.png'),
-                dark: path.join(__filename,'..','..', 'media', 'fatcow', node.proved ? 'accept.png' : 'help.png')
-            }*/
       collapsibleState: vscode.TreeItemCollapsibleState.Collapsed,
       contextValue: "goal",
     };

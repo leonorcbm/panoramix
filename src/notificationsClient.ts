@@ -1,9 +1,3 @@
-import * as vscode from "vscode";
-import { getNotifications } from "./webRequests";
-import { Tree } from "./tree";
-import { NodeProvider } from "./nodeProvider";
-import * as TaskProvider from "./taskProvider";
-
 export declare namespace Notification {
   export interface Loc {
     col1: number;
