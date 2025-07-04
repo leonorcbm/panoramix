@@ -39,17 +39,17 @@ After going through these steps you're ready to go and run the project.
 
 ## Panoramix File Organization
 📦 panoramix/<br>
-├── 📁 .vscode/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # VS Code workspace settings<br>
+├── 📁 .vscode/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   └── vscode-test.mjs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 ├── 📁 dist/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   ├── extension.js<br>
 │   └── extension.js.map<br>
-├── 📁 media/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Icons and Logo<br>
+├── 📁 media/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
 │   └── fatcow/<br>
-│       └── logo_why3.png &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Why3 logo image<br>
-├── 📁 node_modules/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Installed dependencies<br>
+│       └── logo_why3.png &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── 📁 node_modules/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   └── ...<br>
-├── 📁 src/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Source code<br>
+├── 📁 src/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
 │   ├── 📁 language/<br>
 │   │   ├── language-configuration.json<br>
 │   │   └── syntaxes/<br>
@@ -58,7 +58,7 @@ After going through these steps you're ready to go and run the project.
 │   │   ├── terminal.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   │   └── view.html &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   ├── commands.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
-│   ├── extension.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t<br>
+│   ├── extension.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   ├── nodeProviders.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
 │   ├── notificationsClient.ts &nbsp; &nbsp; <br>
 │   ├── server.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
