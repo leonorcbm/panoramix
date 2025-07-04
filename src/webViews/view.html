@@ -2,82 +2,146 @@
 <html lang="en">
 <head>
     <style>
+        :root {
+            --bg: #1e1e1e;
+            --fg: #d4d4d4;
+            --accent: #6A9955;
+            --button-bg: #333;
+            --button-hover: #444;
+            --panel-bg: #2a2a2a;
+            --border-color: #444;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
+            background-color: var(--bg);
+            color: var(--fg);
             font-family: monospace;
             margin: 0;
             padding: 1rem;
+            transition: all 0.3s ease;
         }
 
         .app-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
         }
 
         #menu {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
         #menu button {
-            background-color: #333;
-            color: #d4d4d4;
+            background-color: var(--button-bg);
+            color: var(--fg);
             border: none;
             padding: 0.5rem 1rem;
             cursor: pointer;
             font-family: monospace;
+            transition: background 0.3s, transform 0.2s;
         }
 
         #menu button:hover {
-            background-color: #444;
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        #menu button.active {
+            border-bottom: 2px solid var(--accent);
         }
 
         .content {
             display: flex;
-            width: 100%;
+            flex-direction: row;
             gap: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
         #terminal {
             white-space: pre-wrap;
             flex: 1;
+            padding: 1rem;
+            background-color: #262626;
+            border-radius: 8px;
         }
 
         .cmd::before {
             content: '$ ';
-            color: #6A9955;
+            color: var(--accent);
         }
 
         #side-panel {
             width: 390px;
             height: 300px;
-            background-color: #2a2a2a;
-            border-left: 2px solid #444;
+            background-color: var(--panel-bg);
+            border-left: 2px solid var(--border-color);
             padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        #side-panel.collapsed {
+            transform: translateX(100%);
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+            border-left: none;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            #side-panel {
+                width: 100%;
+                height: auto;
+                border-left: none;
+                border-top: 2px solid var(--border-color);
+            }
         }
     </style>
 </head>
 <body>
     <div class="app-container">
         <div id="menu">
-            <button>Messages</button>
-            <button>Log</button>
-            <button>Edited Proof</button>
-            <button>Prover output</button>
-            <button>Counterexample</button>
+            <button class="active" onclick="setActive(this)">Messages</button>
+            <button onclick="setActive(this)">Log</button>
+            <button onclick="setActive(this)">Edited Proof</button>
+            <button onclick="setActive(this)">Prover output</button>
+            <button onclick="setActive(this)">Counterexample</button>
+            <button onclick="togglePanel()">Transformations</button>
         </div>
         <div class="content">
             <div id="terminal">
                 <div class="cmd">Hello from Panoramix 🧙‍♂️</div>
             </div>
             <div id="side-panel">
-                <div><strong>Side Panel</strong></div>
-                <p>Tree menu</p>
+                <div><strong>Transformations</strong></div>
+                <p>No transformations yet.</p>
             </div>
         </div>
     </div>
+
+    <script>
+        function setActive(button) {
+            document.querySelectorAll('#menu button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
+
+        function togglePanel() {
+            const panel = document.getElementById('side-panel');
+            panel.classList.toggle('collapsed');
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ import * as commands from "./commands.ts";
 import { NodeProvider } from "./nodeProvider.ts";
 import { spawn } from "child_process";
 import TaskProvider from "./taskProvider";
-import { startPollingNotifications /* registerNewPanel */} from "./commands.ts";
+import { startPollingNotifications } from "./commands.ts";
 import { ensureServerRunning } from "./server.ts";
 import { PanoramixTerminalViewProvider } from './webViews/terminal.ts';
 

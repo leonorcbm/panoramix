@@ -1,76 +1,80 @@
-# panoramix README
+# 🧙‍♂️ Panoramix A WhyML Extension in VSCode
 
-- ` opam source why3.1.7.2 `
-- change src/ide/why3web.ml @ line 110 "\n" to "\r\n"
-- change src/ide/why3web.ml @ line 111 "\n" to "\r\n"
-- change src/ide/wserver.ml @ line 122 "HTTP/1.0" to "HTTP/1.1"
-- ` opam pin add why3.1.7.2 `
-- ` opam upgrade why3 `
+> The development of this extension aims to implement the functionality and performance of the Why3 IDE platform, to improve the user experience of programmers who need this deductive program verification tool in their development environment.
+
+![Made with TypeScript](https://img.shields.io/badge/Made%20with-TypeScript-blue?style=flat-square)
 
 ## Features
+- Tree View, where the data is processed to divide it hierarchically into nodes, with their respective tasks.
+- Task View, a side panel that shows a node's task, when you click on it.
+- Terminal View, this Panoramix window will be able to show menus, transformations, and a functional command text-box.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Getting Started
+> Setting up the development environment, envolves the following steps:
+    >> 1. Install the Ocaml Package Manager (opam) and Node.js. 
+    >>
+    >> 2. Install Why3.1.7.2 through opam.
+    >>
+    >> 3. Next, for compatibility u should follow some steps to change some lines in the Why3.1.7.2 source code.
+        >>>  ` opam source why3.1.7.2 ` (in your terminal)
+        >>>
+        >>> Now, in the source code:
+        >>> 
+        >>> - Change ` src/ide/why3web.ml ` - in line 110 "\n" to "\r\n"
+        >>> - Change  `src/ide/why3web.ml` - in line 111 "\n" to "\r\n"
+        >>> - Change `src/ide/wserver.ml` - in line 122 "HTTP/1.0" to "HTTP/1.1"
+        >>>
+        >>>Now you go back to the terminal and do these
+        >>>
+        >>> ` opam pin add why3.1.7.2 `
+        >>>
+        >>>  ` opam upgrade why3 `
+    >>
+    >>
+    >> Install Ocaml extension on VSCode.
+    >>
+    >>Prepare a **.ml** file format file if you're going to test the extension. Keep in mind, the file has to be reachable.
 
-For example if there is an image subfolder under your extension project workspace:
+After going through these steps you're ready to go and run the project.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Panoramix File Organization
+📦 panoramix/<br>
+├── 📁 .vscode/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # VS Code workspace settings<br>
+│   └── vscode-test.mjs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── 📁 dist/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   ├── extension.js<br>
+│   └── extension.js.map<br>
+├── 📁 media/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Icons and Logo<br>
+│   └── fatcow/<br>
+│       └── logo_why3.png &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Why3 logo image<br>
+├── 📁 node_modules/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Installed dependencies<br>
+│   └── ...<br>
+├── 📁 src/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Source code<br>
+│   ├── 📁 language/<br>
+│   │   ├── language-configuration.json<br>
+│   │   └── syntaxes/<br>
+│   │       └── whyml.tmLanguage.json<br>
+│   ├── 📁 webViews/<br>
+│   │   ├── terminal.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   │   └── view.html &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   ├── commands.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   ├── extension.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t<br>
+│   ├── nodeProviders.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   ├── notificationsClient.ts &nbsp; &nbsp; <br>
+│   ├── server.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   ├── taskProviders.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+│   └── webRequests.ts &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── .gitignore &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── .prettierignore &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── .prettierrc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── CHANGELOG.md &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── esbuild.js &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── eslint.config.mjs &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── package-lock.json<br>
+├── package.json &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+├── README.md &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # You're here!<br>
+├── tsconfig.json &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
+└── vsc-extension-quickstart.md &nbsp; <br>
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+<h2> Thanks for Reading!

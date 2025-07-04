@@ -181,7 +181,6 @@ export function sessionQuit() {
   }*/
 
   sessionRunning = false;
-   vscode.window.showWarningMessage('Chegeuei aqui');
 
   Tree.reset();
   nodeProvider?.refresh();

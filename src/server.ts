@@ -27,7 +27,6 @@ export function start() {
       } else {
         vscode.window.showErrorMessage("No workspace folder found.");
       }
-      // process = execFile(why3, args, { cwd: vscode.workspace.workspaceFolders });
     }
   }
 }
@@ -37,9 +36,7 @@ export function notificationsDaemon(nodeProvider: NodeProvider) {
     // processNotifications(nodeProvider);
     nodeProvider.refresh();
     /* let job = new cron.CronJob('* * * * * *', function () {
-        //vscode.window.showInformationMessage(`cenas e coisas`); /* FIXME: remove this line 
         processNotifications(nodeProvider);
-        nodeProvider.refresh();
       }, undefined, true, 'Europe/Lisbon');
       job.start(); */
   }

@@ -45,7 +45,6 @@ export async function sendWebRequest(
   script: scripts,
   request?: requests,
   task?: number,
-  //command?: { id: number; command: commands },
   command?: { id: number; command: commands }
 ) {
   let uri = baseUrl + script.toString();
@@ -72,12 +71,7 @@ export async function sendWebRequest(
 }
 
 function createRequest(uri: string) {
-  /* let options = {
-    uri: uri,
-    json: true
-  }; */
   return fetch(uri);
-  //return baseReq(options);
 }
 
 export async function getNotifications() {
