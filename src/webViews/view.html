@@ -1,147 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        :root {
-            --bg: #1e1e1e;
-            --fg: #d4d4d4;
-            --accent: #6A9955;
-            --button-bg: #333;
-            --button-hover: #444;
-            --panel-bg: #2a2a2a;
-            --border-color: #444;
-        }
+  <style>
+    :root {
+      --bg: #1e1e1e;
+      --fg: #d4d4d4;
+      --accent: #6A9955;
+      --button-bg: #333;
+      --button-hover: #444;
+      --panel-bg: #2a2a2a;
+      --border-color: #444;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: var(--bg);
-            color: var(--fg);
-            font-family: monospace;
-            margin: 0;
-            padding: 1rem;
-            transition: all 0.3s ease;
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: monospace;
+      margin: 0;
+      padding: 1rem;
+    }
 
-        .app-container {
-            display: flex;
-            flex-direction: column;
-        }
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-        #menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
+    #menu, #bottom-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
 
-        #menu button {
-            background-color: var(--button-bg);
-            color: var(--fg);
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-family: monospace;
-            transition: background 0.3s, transform 0.2s;
-        }
+    #menu button, #bottom-toolbar button {
+      background-color: var(--button-bg);
+      color: var(--fg);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-family: monospace;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-        #menu button:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-2px);
-        }
+    #menu button:hover, #bottom-toolbar button:hover {
+      background-color: var(--button-hover);
+      transform: translateY(-2px);
+    }
 
-        #menu button.active {
-            border-bottom: 2px solid var(--accent);
-        }
+    #menu button.active {
+      border-bottom: 2px solid var(--accent);
+    }
 
-        .content {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
+    .content {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      width: 100%;
+    }
 
-        #terminal {
-            white-space: pre-wrap;
-            flex: 1;
-            padding: 1rem;
-            background-color: #262626;
-            border-radius: 8px;
-        }
+    #terminal {
+      white-space: pre-wrap;
+      flex: 1;
+      padding: 1rem;
+      background-color: #262626;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
 
-        .cmd::before {
-            content: '$ ';
-            color: var(--accent);
-        }
+    .cmd::before {
+      content: '$ ';
+      color: var(--accent);
+    }
 
-        #side-panel {
-            width: 390px;
-            height: 300px;
-            background-color: var(--panel-bg);
-            border-left: 2px solid var(--border-color);
-            padding: 1rem;
-            transition: transform 0.3s ease;
-        }
+    #side-panel, #bottom-panel {
+      background-color: var(--panel-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
 
-        #side-panel.collapsed {
-            transform: translateX(100%);
-            width: 0;
-            padding: 0;
-            overflow: hidden;
-            border-left: none;
-        }
+    #side-panel {
+      width: 390px;
+      height: 300px;
+    }
 
-        /* Responsive layout for smaller screens */
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
+    #side-panel.collapsed {
+      transform: translateX(100%);
+      width: 0;
+      padding: 0;
+      overflow: hidden;
+      border: none;
+    }
 
-            #side-panel {
-                width: 100%;
-                height: auto;
-                border-left: none;
-                border-top: 2px solid var(--border-color);
-            }
-        }
-    </style>
+    #command-box {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+    }
+
+    #command-input {
+      flex: 1;
+      background-color: #1a1a1a;
+      color: var(--fg);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 0.5rem 0.75rem;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    #command-input:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    #command-box button {
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-family: monospace;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #command-box button:hover {
+      background-color: #80c77b;
+      transform: translateY(-2px);
+    }
+
+    #bottom-panel {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      #side-panel {
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 2px solid var(--border-color);
+      }
+    }
+    #bottom-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#bottom-panel ul button {
+    background-color: var(--button-bg);
+    color: var(--fg);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#bottom-panel ul button:hover {
+    background-color: var(--button-hover);
+    transform: translateX(2px);
+}
+  </style>
 </head>
 <body>
-    <div class="app-container">
-        <div id="menu">
-            <button class="active" onclick="setActive(this)">Messages</button>
-            <button onclick="setActive(this)">Log</button>
-            <button onclick="setActive(this)">Edited Proof</button>
-            <button onclick="setActive(this)">Prover output</button>
-            <button onclick="setActive(this)">Counterexample</button>
-            <button onclick="togglePanel()">Transformations</button>
-        </div>
-        <div class="content">
-            <div id="terminal">
-                <div class="cmd">Hello from Panoramix 🧙‍♂️</div>
-            </div>
-            <div id="side-panel">
-                <div><strong>Transformations</strong></div>
-                <p>No transformations yet.</p>
-            </div>
-        </div>
+  <div class="app-container">
+    <div id="menu">
+      <button class="active" onclick="setActive(this)">Messages</button>
+      <button onclick="setActive(this)">Log</button>
+      <button onclick="setActive(this)">Edited Proof</button>
+      <button onclick="setActive(this)">Prover output</button>
+      <button onclick="setActive(this)">Counterexample</button>
+      <button onclick="togglePanel()">Transformations</button>
     </div>
 
-    <script>
-        function setActive(button) {
-            document.querySelectorAll('#menu button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            button.classList.add('active');
-        }
+    <div class="content">
+      <div id="terminal">
+        <div class="cmd">Hello from Panoramix 🧙‍♂️</div>
+      </div>
+      <div id="side-panel">
+        <div><strong>Transformations</strong></div>
+        <p>No transformations yet.</p>
+      </div>
+    </div>
 
-        function togglePanel() {
-            const panel = document.getElementById('side-panel');
-            panel.classList.toggle('collapsed');
-        }
-    </script>
+    <div id="command-box">
+      <input type="text" id="command-input" maxlength="30" placeholder="Enter command..." />
+      <button onclick="runCommand()">Run</button>
+    </div>
+
+    <!-- Bottom Toolbar -->
+    <div id="bottom-toolbar">
+      <button onclick="showPanel('file')">File</button>
+      <button onclick="showPanel('edit')">Edit</button>
+      <button onclick="showPanel('tools')">Tools</button>
+      <button onclick="showPanel('view')">View</button>
+    </div>
+
+    <!-- Dynamic Bottom Panel -->
+    <div id="bottom-panel"></div>
+  </div>
+
+  <script>
+    function setActive(button) {
+      document.querySelectorAll('#menu button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    function togglePanel() {
+      const panel = document.getElementById('side-panel');
+      panel.classList.toggle('collapsed');
+    }
+
+    function runCommand() {
+      const input = document.getElementById('command-input');
+      const cmd = input.value.trim();
+      if (cmd) {
+        const terminal = document.getElementById('terminal');
+        const cmdLine = document.createElement('div');
+        cmdLine.classList.add('cmd');
+        cmdLine.textContent = cmd;
+        terminal.appendChild(cmdLine);
+        input.value = '';
+        terminal.scrollTop = terminal.scrollHeight;
+      }
+    }
+
+    function showPanel(type) {
+    const panel = document.getElementById('bottom-panel');
+    const menus = {
+        file: `
+          <ul>
+            <li><button>Add file to session</button></li>
+            <li><button>Preferences</button></li>
+            <li><button>Save session</button></li>
+            <li><button>Save files</button></li>
+            <li><button>Save session and files (Ctrl+S)</button></li>
+            <li><button>Save all and Refresh session (Ctrl+R)</button></li>
+            <li><button>Export session as zip file</button></li>
+            <li><button>Quit (Ctrl+Q)</button></li>
+          </ul>`,
+        edit: `
+          <ul>
+            <li><button>Search forward (Ctrl+F)</button></li>
+            <li><button>Search backward (Ctrl+B)</button></li>
+            <li><button>Find cursor ident (Ctrl+L)</button></li>
+            <li><button>Back (Ctrl+&)</button></li>
+          </ul>`,
+        tools: `
+          <ul>
+            <li><button>Strategies</button></li>
+            <li><button>Provers</button></li>
+            <li><button>Transformations (a–e)</button></li>
+            <li><button>Transformations (eliminate)</button></li>
+            <li><button>Transformations (e–r)</button></li>
+            <li><button>Transformations (s–z)</button></li>
+            <li><button>Edit (E)</button></li>
+            <li><button>Get Counterexamples (G)</button></li>
+            <li><button>Replay valid obsolete proofs (R)</button></li>
+            <li><button>Replay all obsolete proofs</button></li>
+            <li><button>Clean node (C)</button></li>
+            <li><button>Reset proofs</button></li>
+            <li><button>Remove node (Del)</button></li>
+            <li><button>Mark obsolete (O)</button></li>
+            <li><button>Interrupt</button></li>
+            <li><button>Bisect hypotheses</button></li>
+            <li><button>Focus</button></li>
+            <li><button>Unfocus</button></li>
+          </ul>`,
+        view: `
+          <ul>
+            <li><button>Collapse proved goals</button></li>
+            <li><button>Expand all</button></li>
+            <li><button>Collapse current node</button></li>
+            <li><button>Expand current node</button></li>
+            <li><button>Go to parent node</button></li>
+            <li><button>Go to first child</button></li>
+            <li><button>Select next unproven goal</button></li>
+            <li><button>Go down (skip proved)</button></li>
+            <li><button>Go up (skip proved)</button></li>
+          </ul>`,
+    };
+
+    panel.innerHTML = menus[type] || '';
+    panel.style.display = 'block';
+}
+  </script>
 </body>
 </html>
