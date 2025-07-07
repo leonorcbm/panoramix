@@ -10,30 +10,45 @@
 - Terminal View, this Panoramix window will be able to show menus, transformations, and a functional command text-box.
 
 ## Getting Started
-> Setting up the development environment, envolves the following steps: <br>
-    >> 1. Install the Ocaml Package Manager (opam) and Node.js. <br>
-    >><br>
-    >> 2. Install Why3.1.7.2 through opam.<br>
-    >><br>
-    >> 3. Next, for compatibility u should follow some steps to change some lines in the Why3.1.7.2 source code.<br>
-        >>>  ` opam source why3.1.7.2 ` (in your terminal)<br>
-        >>><br>
-        >>> Now, in the source code:<br>
-        >>> <br>
-        >>> - Change ` src/ide/why3web.ml ` - in line 110 "\n" to "\r\n"<br>
-        >>> - Change  `src/ide/why3web.ml` - in line 111 "\n" to "\r\n"<br>
-        >>> - Change `src/ide/wserver.ml` - in line 122 "HTTP/1.0" to "HTTP/1.1"<br>
-        >>><br>
-        >>>Now you go back to the terminal and do these<br>
-        >>><br>
-        >>> ` opam pin add why3.1.7.2 `<br>
-        >>><br>
-        >>>  ` opam upgrade why3 `<br>
-    >><br>
-    >><br>
-    >> Install Ocaml extension on VSCode.<br>
-    >><br>
-    >>Prepare a **.ml** file format file if you're going to test the extension. Keep in mind, the file has to be reachable.<br>
+
+Setting up the development environment involves the following steps:
+
+1. **Install the OCaml Package Manager (`opam`) and Node.js.**
+
+2. **Install Why3 version 1.7.2 through opam:**
+
+   ```sh
+   opam install why3.1.7.2
+   ```
+
+3. **Modify the Why3 source code for compatibility:**
+
+   First, download the source code:
+
+   ```sh
+   opam source why3.1.7.2
+   ```
+
+   Then, make the following changes:
+
+   - In `src/ide/why3web.ml`:
+     - Line 110: Change `"\n"` to `"\r\n"`
+     - Line 111: Change `"\n"` to `"\r\n"`
+   - In `src/ide/wserver.ml`:
+     - Line 122: Change `"HTTP/1.0"` to `"HTTP/1.1"`
+
+4. **Rebuild Why3 with your modifications:**
+
+   ```sh
+   opam pin add why3.1.7.2
+   opam upgrade why3
+   ```
+
+5. **Install the OCaml extension in VSCode.**
+
+6. **Prepare a `.ml` file** if you're going to test the extension.  
+   Make sure the file is reachable by the extension.
+
 
 After going through these steps you're ready to go and run the project.
 
