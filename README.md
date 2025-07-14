@@ -54,7 +54,7 @@ To enable VSCode integration with Panoramix, some internal Why3 source files mus
 
 A patch file `why3-panoramix.patch` is included to execute this process.
 
-### Apply the Patch (via OPAM)
+### Apply the Patch (via opam)
 
 1. **Download the Why3 1.7.2 source code without installing it yet:**
    ```bash
